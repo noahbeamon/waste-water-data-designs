@@ -1,25 +1,44 @@
-import logo from './logo.svg';
+import React from 'react'
 import './App.css';
+import * as ReactBootstrap from "react-bootstrap"; 
+import Home from "./Components/Home";
+import Reports from "./Components/Morevisualizations";
+import Studiesprocedures from "./Components/Studiesandprocedures";
+import Faqs from "./Components/Faqs";
+import Navbar from "./Components/Navbar";
+import Footer from "./Components/Footer"; 
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
-function App() {
+function NavBar() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="page-container">
+      <div className="content-wrap">
+      <Router>
+      <Navbar />
+        <Switch>
+          <Route path="/Morevisualizations" component={Reports}>
+            <Reports />
+          </Route>
+          <Route path="/Studiesandprocedures" component={Studiesprocedures}>
+            <Studiesprocedures />
+          </Route>
+          <Route path="/Faqs" component={Faqs}>
+            <Faqs />
+          </Route>
+          <Route path="/" component={Home}>
+            <Home />
+          </Route>
+        </Switch>
+    </Router>
     </div>
+    <Footer />
+     </div>
   );
 }
 
-export default App;
+export default NavBar;
