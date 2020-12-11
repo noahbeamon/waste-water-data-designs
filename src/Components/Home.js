@@ -60,7 +60,7 @@ const Reports = () => {
                         tipSize={0}
                         offsetTop={-10}
                         >
-                        <div>Test Location #1</div>
+                        <div>Test Location 1</div>
                     </Popup>}
                 <Marker latitude={38.04} longitude={-78.51} offsetLeft={-20} offsetTop={-10}
                 >
@@ -88,7 +88,7 @@ const Reports = () => {
                         tipSize={0}
                         offsetTop={-10}
                         >
-                        <div>Test Location #2</div>
+                        <div>Test Location 2</div>
                     </Popup>}
                
             </ReactMapGL>
