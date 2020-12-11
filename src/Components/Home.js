@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
-import ReactMapGL, {NavigationControl, Marker, Popup} from "react-map-gl"; 
-import { IoMdLocate } from 'react-icons/io';
+import ReactMapGL, {NavigationControl, Marker, Popup, Layer, Source} from "react-map-gl";
+import { BsFillCircleFill } from "react-icons/bs";
+import Data from './Data.json'
 
 const Reports = () => {
     const [viewport, setViewport] = useState({
-        latitude: 38.0316,
-        longitude: -78.5050,
+        latitude: 44,
+        longitude: -120.4,
         width: '60vw',
         height: "100vh", 
-        zoom: 12,
+        zoom: 6,
     });
 
     const [showPopup, setShowPopup] = useState(null);
@@ -34,7 +35,7 @@ const Reports = () => {
                 <div style={{position: 'absolute', right: 10, top: 10}}>
                     <NavigationControl />
                 </div>
-                <Marker latitude={38.0316} longitude={-78.5050} offsetLeft={-20} offsetTop={-10}
+                <Marker latitude={42.9} longitude={-120.3} offsetLeft={-20} offsetTop={-10}
                 >
                     <div onClick={() => {
                         setShowPopup(0);
@@ -48,21 +49,22 @@ const Reports = () => {
                         setShowPopup(null); 
                     }}
                     >
-                        <IoMdLocate style={{color: iconColor, height: 30, width: 30}} />
+                        {/* <IoMdLocate style={{color: iconColor, height: 30, width: 30}} /> */}
+                        <BsFillCircleFill style={{color: iconColor}}/>
                     </div>
                 </Marker>
                 {showPopup == 0 && 
                     <Popup
-                        latitude={38.0316}
-                        longitude={-78.5050}
+                        latitude={42.9}
+                        longitude={-119.86}
                         closeButton={false}
                         closeOnClick={false}
                         tipSize={0}
                         offsetTop={-10}
                         >
-                        <div>Test Location 1</div>
+                        <div>Test Location #1</div>
                     </Popup>}
-                <Marker latitude={38.04} longitude={-78.51} offsetLeft={-20} offsetTop={-10}
+                <Marker latitude={44.93} longitude={-122.5} offsetLeft={-20} offsetTop={-10}
                 >
                     <div onClick={() =>{
                          setShowPopup(1);
@@ -76,21 +78,50 @@ const Reports = () => {
                             setShowPopup(null);
                         }}
                          >
-                             <IoMdLocate style={{color: iconColor1, height: 30, width: 30}} />
+                             <BsFillCircleFill style={{color: iconColor1}}/>
                          </div>
                 </Marker>
                 {showPopup == 1 && 
                     <Popup
-                        latitude={38.04}
-                        longitude={-78.51}
+                        latitude={44.93}
+                        longitude={-123.05}
                         closeButton={false}
                         closeOnClick={false}
                         tipSize={0}
                         offsetTop={-10}
                         >
-                        <div>Test Location 2</div>
+                        <div>Test Location #2</div>
                     </Popup>}
-               
+
+                    <Source id='polylineLayer' type='geojson' data={Data}>
+                        <Layer
+                        id='lineLayer' //lineLayer
+                        type='line' //line
+                        source='my-data'
+                        layout={{
+                        'line-join': 'round',
+                        'line-cap': 'round',
+                        }}
+                        paint={{
+                        'line-color': 'rgba(0, 0, 0, 0.5)',
+                            'line-width': 1,
+                        }}
+                        />
+                    </Source>
+
+                    <Source id='polylineLayer' type='geojson' data={Data}>
+                        <Layer
+                        id= 'aoi-solid-fill'
+                        source= 'aoi' 
+                        type= 'fill'
+                        paint= {{ 
+                            'fill-color': 'rgba(255, 255, 255, 0.30)',
+                         }}
+
+                        />
+                    </Source>
+                   
+
             </ReactMapGL>
             </div>
         </div>
