@@ -3,6 +3,7 @@ import ReactMapGL, {NavigationControl, Marker, Popup, Layer, Source} from "react
 import { BsFillCircleFill } from "react-icons/bs";
 import Data from './Data.json'
 import Data2 from './Data2.json'
+import './Reports.css'
 
 const Reports = () => {
     const [viewport, setViewport] = useState({
@@ -29,8 +30,10 @@ const Reports = () => {
         <div className="App">
             <h1 style={{padding: 20}}><strong>Data Reports</strong></h1>
             <p style={{padding: 0}}>Click a location on the map below to view its data report, or scroll down to see all the charts.</p>
-            <div style={{padding: 20}}>
+            <div className="map-chart-container">
+            <div>
             <ReactMapGL
+            className="map-view-container"
             {...viewport}
             mapStyle = "mapbox://styles/noahb20/ckigtszgw173519qy1c0t05va"
             mapboxApiAccessToken="pk.eyJ1Ijoibm9haGIyMCIsImEiOiJja2lkb2RlaGMwNGR4Mnhxd21sbWxyeWVnIn0.SLuqIEAYEE2gY0ZNw5ySHA"
@@ -163,6 +166,15 @@ const Reports = () => {
                     </div> */}
 
             </ReactMapGL>
+            
+            </div>
+            <p></p>
+            <div>
+                <div className="chart-view-container">
+                    <p>[ test ] [ test ]</p>
+                    <p>[ test ] [ test ] [ test ]</p>
+                </div>
+            </div>
             </div>
         </div>
     )

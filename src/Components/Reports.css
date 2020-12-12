@@ -1,0 +1,17 @@
+.map-chart-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin: 20px;
+}
+
+.map-view-container {
+    border-radius: 5px;
+}
+
+.chart-view-container {
+    background-color: whitesmoke;
+    margin-left: 20px; 
+    border-radius: 5px;
+    padding: 20px;  
+}
