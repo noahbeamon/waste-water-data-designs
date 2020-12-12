@@ -1,8 +1,9 @@
 import React from 'react'
 import './App.css';
 import * as ReactBootstrap from "react-bootstrap"; 
-import Home from "./Components/Home";
-import Reports from "./Components/Morevisualizations";
+import Home from "./Components/Home"
+import Reports from "./Components/Reports";
+import Morevisualizations from "./Components/Morevisualizations";
 import Studiesprocedures from "./Components/Studiesandprocedures";
 import Faqs from "./Components/Faqs";
 import Navbar from "./Components/Navbar";
@@ -21,14 +22,17 @@ function NavBar() {
       <Router>
       <Navbar />
         <Switch>
-          <Route path="/Morevisualizations" component={Reports}>
-            <Reports />
-          </Route>
           <Route path="/Studiesandprocedures" component={Studiesprocedures}>
             <Studiesprocedures />
           </Route>
+          <Route path="/Morevisualizations" component={Morevisualizations}>
+            <Morevisualizations />
+          </Route>
           <Route path="/Faqs" component={Faqs}>
             <Faqs />
+          </Route>
+          <Route path="/Reports" component={Reports}>
+            <Reports />
           </Route>
           <Route path="/" component={Home}>
             <Home />

@@ -19,11 +19,14 @@ function App() {
             <Link to="/">
             <ReactBootstrap.Nav.Link href="#home">Home</ReactBootstrap.Nav.Link>
             </Link>
-            <Link to="/Morevisualizations">
-            <ReactBootstrap.Nav.Link eventKey={2} href="#morevisualizations">More Visualizations</ReactBootstrap.Nav.Link>
+            <Link to="/Reports">
+            <ReactBootstrap.Nav.Link href="#reports">Reports</ReactBootstrap.Nav.Link>
             </Link>
             <Link to="/Studiesandprocedures">
             <ReactBootstrap.Nav.Link eventKey={3} href="#studiesandprocedures">Studies and Procedures</ReactBootstrap.Nav.Link>
+            </Link>
+            <Link to="/Morevisualizations">
+            <ReactBootstrap.Nav.Link eventKey={2} href="#morevisualizations">More Visualizations</ReactBootstrap.Nav.Link>
             </Link>
             <Link to="/Faqs">
             <ReactBootstrap.Nav.Link eventKey={4} href="#faqs">FAQs</ReactBootstrap.Nav.Link>
