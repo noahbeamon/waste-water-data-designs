@@ -1,22 +1,24 @@
 import React, { useState } from 'react';
 import ReactMapGL, {NavigationControl, Marker, Popup, Layer, Source} from "react-map-gl";
 import { BsFillCircleFill } from "react-icons/bs";
-import Data from './Data.json'
-import Data2 from './Data2.json'
-import './Reports.css'
+import Data from './Data.json';
+import Data2 from './Data2.json';
+import './Reports.css';
+import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, Label } from "recharts"; 
+import { chartData1a, chartData1b, chartData2a, chartData2b } from "./ChartData.js"; 
 
 const Reports = () => {
     const [viewport, setViewport] = useState({
         latitude: 38.031479,
         longitude: -78.481272,
-        width: '60vw',
-        height: "100vh", 
+        width: '50vw',
+        height: "600px", 
         zoom: 13,
     });
 
     const [showPopup, setShowPopup] = useState(null);
     
-    let activeColor = 'rgba(0, 251, 0, 0.5)'; 
+    let activeColor = 'rgba(57, 184, 120, 0.8)'; 
     let inactiveColor = 'rgba(255, 0, 0, 0.5)'; 
     let activeRegionColor = 'rgba(0, 0, 0, 1)';
     let inactiveRegionColor = 'rgba(0, 0, 0, 0.3)';
@@ -25,6 +27,23 @@ const Reports = () => {
     const [iconColor1, setIconColor1] = useState(inactiveColor);
 
     const [regionLineColor, setRegionLineColor] = useState(inactiveRegionColor)
+
+    const [showChart, setShowChart] = useState(null); 
+
+      var graphOneYLabel = "SARS-CoV-2 RNA \
+       copies/mL"
+
+       const DataFormater = (number) => {
+        if(number > 1000000000){
+          return (number/1000000000).toString() + 'B';
+        }else if(number > 1000000){
+          return (number/1000000).toString() + 'M';
+        }else if(number > 1000){
+          return (number/1000).toString() + 'K';
+        }else{
+          return number.toString();
+        }
+      }
 
     return(
         <div className="App">
@@ -48,8 +67,9 @@ const Reports = () => {
                 >
                     <div onClick={() => {
                         setShowPopup(0);
-                        setIconColor(activeColor)
-                        setIconColor1(inactiveColor)
+                        setIconColor(activeColor);
+                        setIconColor1(inactiveColor);
+                        setShowChart(0);
                     }}
                     onMouseOver={() => {
                         setShowPopup(0);
@@ -79,8 +99,9 @@ const Reports = () => {
                 >
                     <div onClick={() =>{
                          setShowPopup(1);
-                         setIconColor1(activeColor)
-                         setIconColor(inactiveColor)
+                         setIconColor1(activeColor);
+                         setIconColor(inactiveColor);
+                         setShowChart(1);
                          }}
                          onMouseOver={() => {
                             setShowPopup(1);
@@ -164,16 +185,79 @@ const Reports = () => {
                         />
                     </Source>
                     </div> */}
-
             </ReactMapGL>
-            
             </div>
-            <p></p>
             <div>
+                {(showChart == null || showChart == 0) &&
                 <div className="chart-view-container">
-                    <p>[ test ] [ test ]</p>
-                    <p>[ test ] [ test ] [ test ]</p>
-                </div>
+                    <strong style={{fontSize: 20}}>Test Location #1</strong>
+                    <p style={{color: 'gray'}}>The Test Location #1 serves # people.</p>
+                    <p style={{color: 'gray'}}>Areas served: Test Location #1,...</p>  
+                    <BarChart width={window.innerWidth*0.40} height={175} data={chartData1a} style={{marginBottom: 20}}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date"/>
+                        <YAxis tickFormatter={DataFormater}>
+                            <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
+                        </YAxis>
+                        <Tooltip />
+                        <Bar dataKey="copies/mL" fill="#4B93E2" />
+                    </BarChart>
+                    <div>
+                    <BarChart width={window.innerWidth*0.40} height={175} data={chartData1b}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date" />
+                        <YAxis tickFormatter={DataFormater}>
+                        <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
+                        </YAxis>
+                        <Tooltip />
+                        <Bar dataKey="cases" fill="#000000"/>
+                        <Bar dataKey="predicted cases" fill="#aaacab"/>
+                    </BarChart>
+                    </div>
+                    <div className="bottom-legend">
+                        <BsFillCircleFill style={{color: '#000000', margin: 8}} size={8}/>
+                        <p>Measured case data</p>
+                    </div>
+                    <div className="bottom-legend">
+                        <BsFillCircleFill style={{color: '#aaacab', margin: 8}} size={8}/>
+                        <p>Predicted case data based on wastewater SARS-CoV-2 concentrations</p>
+                    </div>
+                </div>}
+                {(showChart == 1) &&
+                <div className="chart-view-container">
+                    <strong style={{fontSize: 20}}>Test Location #2</strong>
+                    <p style={{color: 'gray'}}>The Test Location #2 serves # people.</p>
+                    <p style={{color: 'gray'}}>Areas served: Test Location #2,...</p>  
+                    <BarChart width={window.innerWidth*0.40} height={175} data={chartData2a} style={{marginBottom: 20}}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date"/>
+                        <YAxis tickFormatter={DataFormater}>
+                            <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
+                        </YAxis>
+                        <Tooltip />
+                        <Bar dataKey="copies/mL" fill="#4B93E2" />
+                    </BarChart>
+                    <div>
+                    <BarChart width={window.innerWidth*0.40} height={175} data={chartData2b}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date" />
+                        <YAxis tickFormatter={DataFormater}>
+                        <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
+                        </YAxis>
+                        <Tooltip />
+                        <Bar dataKey="cases" fill="#000000"/>
+                        <Bar dataKey="predicted cases" fill="#aaacab"/>
+                    </BarChart>
+                    </div>
+                    <div className="bottom-legend">
+                        <BsFillCircleFill style={{color: '#000000', margin: 8}} size={8}/>
+                        <p>Measured case data</p>
+                    </div>
+                    <div className="bottom-legend">
+                        <BsFillCircleFill style={{color: '#aaacab', margin: 8}} size={8}/>
+                        <p>Predicted case data based on wastewater SARS-CoV-2 concentrations</p>
+                    </div>
+                </div>}
             </div>
             </div>
         </div>
