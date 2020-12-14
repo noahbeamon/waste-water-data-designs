@@ -1,17 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import ReactMapGL, {NavigationControl, Marker, Popup, Layer, Source} from "react-map-gl";
-import { BsFillCircleFill } from "react-icons/bs";
+import { BsFillCircleFill, BsFillBarChartFill } from "react-icons/bs";
+import { BiLineChart } from "react-icons/bi";
 import Data from './Data.json';
 import Data2 from './Data2.json';
 import './Reports.css';
-import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, Label } from "recharts"; 
+import { BarChart, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Line, Label } from "recharts"; 
 import { chartData1a, chartData1b, chartData2a, chartData2b } from "./ChartData.js"; 
+import Switch from "react-switch";
 
 const Reports = () => {
     const [viewport, setViewport] = useState({
         latitude: 38.031479,
         longitude: -78.481272,
-        width: '50vw',
+        width: window.innerWidth*.50, //50vw
         height: "600px", 
         zoom: 13,
     });
@@ -44,6 +46,8 @@ const Reports = () => {
           return number.toString();
         }
       }
+
+      const [checked, setChecked] = useState(true); 
 
     return(
         <div className="App">
@@ -188,7 +192,7 @@ const Reports = () => {
             </ReactMapGL>
             </div>
             <div>
-                {(showChart == null || showChart == 0) &&
+                {((showChart == null || showChart == 0) && checked) &&
                 <div className="chart-view-container">
                     <strong style={{fontSize: 20}}>Test Location #1</strong>
                     <p style={{color: 'gray'}}>The Test Location #1 serves # people.</p>
@@ -223,7 +227,42 @@ const Reports = () => {
                         <p>Predicted case data based on wastewater SARS-CoV-2 concentrations</p>
                     </div>
                 </div>}
-                {(showChart == 1) &&
+                {((showChart == null || showChart == 0) && !checked) &&
+                <div className="chart-view-container">
+                    <strong style={{fontSize: 20}}>Test Location #1</strong>
+                    <p style={{color: 'gray'}}>The Test Location #1 serves # people.</p>
+                    <p style={{color: 'gray'}}>Areas served: Test Location #1,...</p>  
+                    <LineChart width={window.innerWidth*0.40} height={175} data={chartData1a} style={{marginBottom: 20}}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date"/>
+                        <YAxis tickFormatter={DataFormater}>
+                            <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
+                        </YAxis>
+                        <Tooltip />
+                        <Line dataKey="copies/mL" fill="#4B93E2" />
+                    </LineChart>
+                    <div>
+                    <LineChart width={window.innerWidth*0.40} height={175} data={chartData1b}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date" />
+                        <YAxis tickFormatter={DataFormater}>
+                        <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
+                        </YAxis>
+                        <Tooltip />
+                        <Line dataKey="cases" fill="#000000"/>
+                        <Line dataKey="predicted cases" fill="#aaacab"/>
+                    </LineChart>
+                    </div>
+                    <div className="bottom-legend">
+                        <BsFillCircleFill style={{color: '#000000', margin: 8}} size={8}/>
+                        <p>Measured case data</p>
+                    </div>
+                    <div className="bottom-legend">
+                        <BsFillCircleFill style={{color: '#aaacab', margin: 8}} size={8}/>
+                        <p>Predicted case data based on wastewater SARS-CoV-2 concentrations</p>
+                    </div>
+                </div>}
+                {(showChart == 1 && checked) &&
                 <div className="chart-view-container">
                     <strong style={{fontSize: 20}}>Test Location #2</strong>
                     <p style={{color: 'gray'}}>The Test Location #2 serves # people.</p>
@@ -258,7 +297,184 @@ const Reports = () => {
                         <p>Predicted case data based on wastewater SARS-CoV-2 concentrations</p>
                     </div>
                 </div>}
+                {(showChart == 1 && !checked) &&
+                <div className="chart-view-container">
+                    <strong style={{fontSize: 20}}>Test Location #2</strong>
+                    <p style={{color: 'gray'}}>The Test Location #2 serves # people.</p>
+                    <p style={{color: 'gray'}}>Areas served: Test Location #2,...</p>  
+                    <LineChart width={window.innerWidth*0.40} height={175} data={chartData2a} style={{marginBottom: 20}}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date"/>
+                        <YAxis tickFormatter={DataFormater}>
+                            <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
+                        </YAxis>
+                        <Tooltip />
+                        <Line dataKey="copies/mL" fill="#4B93E2" />
+                    </LineChart>
+                    <div>
+                    <LineChart width={window.innerWidth*0.40} height={175} data={chartData2b}>
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="date" />
+                        <YAxis tickFormatter={DataFormater}>
+                        <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
+                        </YAxis>
+                        <Tooltip />
+                        <Line dataKey="cases" fill="#000000"/>
+                        <Line dataKey="predicted cases" fill="#aaacab"/>
+                    </LineChart>
+                    </div>
+                    <div className="bottom-legend">
+                        <BsFillCircleFill style={{color: '#000000', margin: 8}} size={8}/>
+                        <p>Measured case data</p>
+                    </div>
+                    <div className="bottom-legend">
+                        <BsFillCircleFill style={{color: '#aaacab', margin: 8}} size={8}/>
+                        <p>Predicted case data based on wastewater SARS-CoV-2 concentrations</p>
+                    </div>
+                </div>}
             </div>
+            </div>
+            
+            {checked && <div className="bottom-chart-view-container">
+                <strong style={{fontSize: 20}}>Wastewater SARS-CoV-2 Data</strong>
+                <div className="chart-row">
+                    <div className="chart-box">
+                        <p>Test Location #1</p>
+                        <BarChart width={window.innerWidth*0.20} height={175} data={chartData1a} style={{marginBottom: 20}}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="date"/>
+                            <YAxis tickFormatter={DataFormater}>
+                                <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
+                            </YAxis>
+                            <Tooltip />
+                            <Bar dataKey="copies/mL" fill="#4B93E2" />
+                        </BarChart>
+                    </div>
+                    <div className="chart-box">
+                        <p>Test Location #2</p>
+                        <BarChart width={window.innerWidth*0.20} height={175} data={chartData2a} style={{marginBottom: 20}}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="date"/>
+                            <YAxis tickFormatter={DataFormater}>
+                            </YAxis>
+                            <Tooltip />
+                            <Bar dataKey="copies/mL" fill="#4B93E2" />
+                        </BarChart>
+                    </div>
+                </div>
+                <strong style={{fontSize: 20}}>Case Data</strong>
+                <p style={{color: 'gray'}}>By date of specimen collection</p>
+                <div className="chart-row">
+                    <div className="chart-box">
+                        <p>Test Location #1</p>
+                        <BarChart width={window.innerWidth*0.20} height={175} data={chartData1b}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="date" />
+                            <YAxis tickFormatter={DataFormater}>
+                            <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
+                            </YAxis>
+                            <Tooltip />
+                            <Bar dataKey="cases" fill="#000000"/>
+                            <Bar dataKey="predicted cases" fill="#aaacab"/>
+                        </BarChart>
+                    </div>
+                    <div className="chart-box">
+                        <p>Test Location #2</p>
+                        <BarChart width={window.innerWidth*0.20} height={175} data={chartData2b}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="date" />
+                            <YAxis tickFormatter={DataFormater}>
+                            <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
+                            </YAxis>
+                            <Tooltip />
+                            <Bar dataKey="cases" fill="#000000"/>
+                            <Bar dataKey="predicted cases" fill="#aaacab"/>
+                        </BarChart>
+                    </div>
+                </div>
+                <div className="bottom-legend">
+                        <BsFillCircleFill style={{color: '#000000', margin: 8}} size={8}/>
+                        <p>Measured case data</p>
+                        </div>
+                        <div className="bottom-legend">
+                            <BsFillCircleFill style={{color: '#aaacab', margin: 8}} size={8}/>
+                            <p>Predicted case data based on wastewater SARS-CoV-2 concentrations</p>
+                        </div>
+            </div>}
+
+            {!checked && <div className="bottom-chart-view-container">
+                <strong style={{fontSize: 20}}>Wastewater SARS-CoV-2 Data</strong>
+                <div className="chart-row">
+                    <div className="chart-box">
+                        <p>Test Location #1</p>
+                        <LineChart width={window.innerWidth*0.20} height={175} data={chartData1a} style={{marginBottom: 20}}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="date"/>
+                            <YAxis tickFormatter={DataFormater}>
+                                <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
+                            </YAxis>
+                            <Tooltip />
+                            <Line dataKey="copies/mL" fill="#4B93E2" />
+                        </LineChart>
+                    </div>
+                    <div className="chart-box">
+                        <p>Test Location #2</p>
+                        <LineChart width={window.innerWidth*0.20} height={175} data={chartData2a} style={{marginBottom: 20}}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="date"/>
+                            <YAxis tickFormatter={DataFormater}>
+                            </YAxis>
+                            <Tooltip />
+                            <Line dataKey="copies/mL" fill="#4B93E2" />
+                        </LineChart>
+                    </div>
+                </div>
+                <strong style={{fontSize: 20}}>Case Data</strong>
+                <p style={{color: 'gray'}}>By date of specimen collection</p>
+                <div className="chart-row">
+                    <div className="chart-box">
+                        <p>Test Location #1</p>
+                        <LineChart width={window.innerWidth*0.20} height={175} data={chartData1b}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="date" />
+                            <YAxis tickFormatter={DataFormater}>
+                            <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
+                            </YAxis>
+                            <Tooltip />
+                            <Line dataKey="cases" fill="#000000"/>
+                            <Line dataKey="predicted cases" fill="#aaacab"/>
+                        </LineChart>
+                    </div>
+                    <div className="chart-box">
+                        <p>Test Location #2</p>
+                        <LineChart width={window.innerWidth*0.20} height={175} data={chartData2b}>
+                            <CartesianGrid strokeDasharray="3 3" />
+                            <XAxis dataKey="date" />
+                            <YAxis tickFormatter={DataFormater}>
+                            <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
+                            </YAxis>
+                            <Tooltip />
+                            <Line dataKey="cases" fill="#000000"/>
+                            <Line dataKey="predicted cases" fill="#aaacab"/>
+                        </LineChart>
+                    </div>
+                </div>
+                <div className="bottom-legend">
+                        <BsFillCircleFill style={{color: '#000000', margin: 8}} size={8}/>
+                        <p>Measured case data</p>
+                        </div>
+                        <div className="bottom-legend">
+                            <BsFillCircleFill style={{color: '#aaacab', margin: 8}} size={8}/>
+                            <p>Predicted case data based on wastewater SARS-CoV-2 concentrations</p>
+                        </div>
+            </div>}
+
+            <div className="toggle-button">
+                <BiLineChart size={20} style={{marginRight: 10, marginTop: 5}}/>
+                <label>
+                    <Switch onChange={() => setChecked(!checked)} checked={checked} checkedIcon={false} uncheckedIcon={false} onColor="#c0c4c2" offColor="#c0c4c2"/>
+                </label>
+                <BsFillBarChartFill size={20} style={{marginLeft: 10, marginTop: 5}}/>
             </div>
         </div>
     )
