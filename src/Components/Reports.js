@@ -384,7 +384,7 @@ const Reports = () => {
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="date" />
                             <YAxis tickFormatter={DataFormater}>
-                            <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
+                            {/* <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/> */}
                             </YAxis>
                             <Tooltip />
                             <Bar dataKey="cases" fill="#000000"/>
@@ -451,7 +451,6 @@ const Reports = () => {
                             <CartesianGrid strokeDasharray="3 3" />
                             <XAxis dataKey="date" />
                             <YAxis tickFormatter={DataFormater}>
-                            <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
                             </YAxis>
                             <Tooltip />
                             <Line dataKey="cases" fill="#000000"/>
