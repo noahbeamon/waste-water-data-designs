@@ -239,7 +239,7 @@ const Reports = () => {
                             <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
                         </YAxis>
                         <Tooltip />
-                        <Line dataKey="copies/mL" fill="#4B93E2" />
+                        <Line dataKey="copies/mL" stroke="#4B93E2" dot={false}/>
                     </LineChart>
                     <div>
                     <LineChart width={window.innerWidth*0.40} height={175} data={chartData1b}>
@@ -249,8 +249,8 @@ const Reports = () => {
                         <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
                         </YAxis>
                         <Tooltip />
-                        <Line dataKey="cases" fill="#000000"/>
-                        <Line dataKey="predicted cases" fill="#aaacab"/>
+                        <Line dataKey="cases" stroke="#000000" dot={false}/>
+                        <Line dataKey="predicted cases" stroke="#aaacab" dot={false}/>
                     </LineChart>
                     </div>
                     <div className="bottom-legend">
@@ -309,7 +309,7 @@ const Reports = () => {
                             <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
                         </YAxis>
                         <Tooltip />
-                        <Line dataKey="copies/mL" fill="#4B93E2" />
+                        <Line dataKey="copies/mL" stroke="#4B93E2" dot={false}/>
                     </LineChart>
                     <div>
                     <LineChart width={window.innerWidth*0.40} height={175} data={chartData2b}>
@@ -319,8 +319,8 @@ const Reports = () => {
                         <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
                         </YAxis>
                         <Tooltip />
-                        <Line dataKey="cases" fill="#000000"/>
-                        <Line dataKey="predicted cases" fill="#aaacab"/>
+                        <Line dataKey="cases" stroke="#000000" dot={false}/>
+                        <Line dataKey="predicted cases" stroke="#aaacab" dot={false}/>
                     </LineChart>
                     </div>
                     <div className="bottom-legend">
@@ -414,7 +414,7 @@ const Reports = () => {
                                 <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
                             </YAxis>
                             <Tooltip />
-                            <Line dataKey="copies/mL" fill="#4B93E2" />
+                            <Line dataKey="copies/mL" stroke="#4B93E2" dot={false}/>
                         </LineChart>
                     </div>
                     <div className="chart-box">
@@ -425,7 +425,7 @@ const Reports = () => {
                             <YAxis tickFormatter={DataFormater}>
                             </YAxis>
                             <Tooltip />
-                            <Line dataKey="copies/mL" fill="#4B93E2" />
+                            <Line dataKey="copies/mL" stroke="#4B93E2" dot={false}/>
                         </LineChart>
                     </div>
                 </div>
@@ -441,8 +441,8 @@ const Reports = () => {
                             <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
                             </YAxis>
                             <Tooltip />
-                            <Line dataKey="cases" fill="#000000"/>
-                            <Line dataKey="predicted cases" fill="#aaacab"/>
+                            <Line dataKey="cases" stroke="#000000" dot={false}/>
+                            <Line dataKey="predicted cases" stroke="#aaacab" dot={false}/>
                         </LineChart>
                     </div>
                     <div className="chart-box">
@@ -453,8 +453,8 @@ const Reports = () => {
                             <YAxis tickFormatter={DataFormater}>
                             </YAxis>
                             <Tooltip />
-                            <Line dataKey="cases" fill="#000000"/>
-                            <Line dataKey="predicted cases" fill="#aaacab"/>
+                            <Line dataKey="cases" stroke="#000000" dot={false}/>
+                            <Line dataKey="predicted cases" stroke="#aaacab" dot={false}/>
                         </LineChart>
                     </div>
                 </div>
