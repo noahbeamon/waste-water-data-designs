@@ -22,7 +22,10 @@ const Home = () => {
                     setButton1Color("rgba(46, 61, 130, 1)");
                 }}
                 onClick={() =>{
-                    window.location.href="Reports"
+                    window.location.href="Reports";
+                    setTimeout(() => {
+                        setButton1Color("rgba(46, 61, 130, 1)");
+                    }, 20);
                 }}
                 >
                     <strong style={{color: "white"}}>See Data Reports</strong>
@@ -35,7 +38,10 @@ const Home = () => {
                     setButton2Color("rgba(85, 85, 85, 1)");
                 }}
                 onClick={() =>{
-                    window.location.href="Faqs"
+                    window.location.href="Faqs";
+                    setTimeout(() => {
+                        setButton2Color("rgba(85, 85, 85, 1)");
+                    }, 20);
                 }}
                 >
                     <strong style={{color: "white"}}>FAQs</strong>
@@ -55,7 +61,10 @@ const Home = () => {
                     setButton3Color("rgba(85, 85, 85, 1)");
                 }}
                 onClick={() =>{
-                    window.location.href="Studiesandprocedures"
+                    window.location.href="Studiesandprocedures";
+                    setTimeout(() => {
+                        setButton3Color("rgba(85, 85, 85, 1)");
+                    }, 20);
                 }}
                 >
                     <strong style={{color: "white"}}>See Studies and Procedures</strong>
@@ -68,7 +77,10 @@ const Home = () => {
                     setButton4Color("rgba(85, 85, 85, 1)");
                 }}
                 onClick={() =>{
-                    window.location.href="Moreprojects"
+                    window.location.href="Moreprojects";
+                    setTimeout(() => {
+                        setButton4Color("rgba(85, 85, 85, 1)");
+                    }, 20);
                 }}
                 >
                     <strong style={{color: "white"}}>Additional Projects and Publications</strong>
