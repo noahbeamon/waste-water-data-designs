@@ -1,9 +1,9 @@
-import React, { useState, Component } from 'react';
+import React, { useState } from 'react';
 import ReactMapGL, {NavigationControl, Marker, Popup, Layer, Source} from "react-map-gl";
 import { BsFillCircleFill, BsFillBarChartFill } from "react-icons/bs";
 import { BiLineChart } from "react-icons/bi";
 import Data from './Data.json';
-import Data2 from './Data2.json';
+//import Data2 from './Data2.json';
 import './Reports.css';
 import { BarChart, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Line, Label } from "recharts"; 
 import { chartData1a, chartData1b, chartData2a, chartData2b } from "./ChartData.js"; 
@@ -30,10 +30,7 @@ const Reports = () => {
 
     const [regionLineColor, setRegionLineColor] = useState(inactiveRegionColor)
 
-    const [showChart, setShowChart] = useState(null); 
-
-      var graphOneYLabel = "SARS-CoV-2 RNA \
-       copies/mL"
+    const [showChart, setShowChart] = useState(null);
 
        const DataFormater = (number) => {
         if(number > 1000000000){
@@ -88,7 +85,7 @@ const Reports = () => {
                         <BsFillCircleFill style={{color: iconColor}}/>
                     </div>
                 </Marker>
-                {showPopup == 0 && 
+                {showPopup === 0 && 
                     <Popup
                         latitude={38.0293}
                         longitude={-78.4767}
@@ -119,7 +116,7 @@ const Reports = () => {
                              <BsFillCircleFill style={{color: iconColor1}}/>
                          </div>
                 </Marker>
-                {showPopup == 1 && 
+                {showPopup === 1 && 
                     <Popup
                         latitude={38.03501}
                         longitude={-78.50425}
@@ -192,7 +189,7 @@ const Reports = () => {
             </ReactMapGL>
             </div>
             <div>
-                {((showChart == null || showChart == 0) && checked) &&
+                {((showChart == null || showChart === 0) && checked) &&
                 <div className="chart-view-container">
                     <strong style={{fontSize: 20}}>Test Location #1</strong>
                     <p style={{color: 'gray'}}>The Test Location #1 serves # people.</p>
@@ -227,7 +224,7 @@ const Reports = () => {
                         <p>Predicted case data based on wastewater SARS-CoV-2 concentrations</p>
                     </div>
                 </div>}
-                {((showChart == null || showChart == 0) && !checked) &&
+                {((showChart == null || showChart === 0) && !checked) &&
                 <div className="chart-view-container">
                     <strong style={{fontSize: 20}}>Test Location #1</strong>
                     <p style={{color: 'gray'}}>The Test Location #1 serves # people.</p>
@@ -262,7 +259,7 @@ const Reports = () => {
                         <p>Predicted case data based on wastewater SARS-CoV-2 concentrations</p>
                     </div>
                 </div>}
-                {(showChart == 1 && checked) &&
+                {(showChart === 1 && checked) &&
                 <div className="chart-view-container">
                     <strong style={{fontSize: 20}}>Test Location #2</strong>
                     <p style={{color: 'gray'}}>The Test Location #2 serves # people.</p>
@@ -297,7 +294,7 @@ const Reports = () => {
                         <p>Predicted case data based on wastewater SARS-CoV-2 concentrations</p>
                     </div>
                 </div>}
-                {(showChart == 1 && !checked) &&
+                {(showChart === 1 && !checked) &&
                 <div className="chart-view-container">
                     <strong style={{fontSize: 20}}>Test Location #2</strong>
                     <p style={{color: 'gray'}}>The Test Location #2 serves # people.</p>

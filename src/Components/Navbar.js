@@ -2,7 +2,7 @@ import React from 'react'
 import '../App.css';
 import * as ReactBootstrap from "react-bootstrap"; 
 import {
-    BrowserRouter as Router,
+    //BrowserRouter as Router,
     Link,
 } from 'react-router-dom'; 
 
@@ -23,10 +23,10 @@ function App() {
             <ReactBootstrap.Nav.Link href="#reports">Reports</ReactBootstrap.Nav.Link>
             </Link>
             <Link to="/Studiesandprocedures">
-            <ReactBootstrap.Nav.Link eventKey={3} href="#studiesandprocedures">Studies and Procedures</ReactBootstrap.Nav.Link>
+            <ReactBootstrap.Nav.Link eventKey={2} href="#studiesandprocedures">Studies and Procedures</ReactBootstrap.Nav.Link>
             </Link>
-            <Link to="/Morevisualizations">
-            <ReactBootstrap.Nav.Link eventKey={2} href="#morevisualizations">More Visualizations</ReactBootstrap.Nav.Link>
+            <Link to="/Moreprojects">
+            <ReactBootstrap.Nav.Link eventKey={3} href="#moreprojects">More Projects</ReactBootstrap.Nav.Link>
             </Link>
             <Link to="/Faqs">
             <ReactBootstrap.Nav.Link eventKey={4} href="#faqs">FAQs</ReactBootstrap.Nav.Link>

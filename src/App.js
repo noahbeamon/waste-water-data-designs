@@ -1,9 +1,9 @@
 import React from 'react'
 import './App.css';
-import * as ReactBootstrap from "react-bootstrap"; 
+//import * as ReactBootstrap from "react-bootstrap"; 
 import Home from "./Components/Home"
 import Reports from "./Components/Reports";
-import Morevisualizations from "./Components/Morevisualizations";
+import Moreprojects from "./Components/Moreprojects";
 import Studiesprocedures from "./Components/Studiesandprocedures";
 import Faqs from "./Components/Faqs";
 import Navbar from "./Components/Navbar";
@@ -12,7 +12,7 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  //Link
 } from "react-router-dom";
 
 function NavBar() {
@@ -25,8 +25,8 @@ function NavBar() {
           <Route path="/Studiesandprocedures" component={Studiesprocedures}>
             <Studiesprocedures />
           </Route>
-          <Route path="/Morevisualizations" component={Morevisualizations}>
-            <Morevisualizations />
+          <Route path="/Moreprojects" component={Moreprojects}>
+            <Moreprojects />
           </Route>
           <Route path="/Faqs" component={Faqs}>
             <Faqs />
