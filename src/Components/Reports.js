@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import ReactMapGL, {NavigationControl, Marker, Popup, Layer, Source} from "react-map-gl";
+import React, { useState, useRef, useCallback } from 'react';
+import Geocoder from 'react-map-gl-geocoder';
+import 'react-map-gl-geocoder/dist/mapbox-gl-geocoder.css';
+import MapGL, {NavigationControl, Marker, Popup, Layer, Source} from "react-map-gl";
 import { BsFillCircleFill, BsFillBarChartFill } from "react-icons/bs";
 import { BiLineChart } from "react-icons/bi";
 import Data from './Data.json';
-//import Data2 from './Data2.json';
+// import Data2 from './Data2.json';
 import './Reports.css';
 import { BarChart, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Bar, Line, Label } from "recharts"; 
 import { chartData1a, chartData1b, chartData2a, chartData2b } from "./ChartData.js"; 
@@ -13,10 +15,28 @@ const Reports = () => {
     const [viewport, setViewport] = useState({
         latitude: 38.031479,
         longitude: -78.481272,
-        width: window.innerWidth*.50, //50vw
+        width: window.innerWidth*0.50, //50vw
         height: "600px", 
         zoom: 13,
     });
+
+    const mapRef = useRef();
+    const handleViewportChange = useCallback(
+        (newViewport) => setViewport(newViewport),
+        []
+    );
+
+    const handleGeocoderViewportChange = useCallback(
+        (newViewport) => {
+          const geocoderDefaultOverrides = { transitionDuration: 1000 };
+     
+          return handleViewportChange({
+            ...newViewport,
+            ...geocoderDefaultOverrides
+          });
+        },
+        []
+      );
 
     const [showPopup, setShowPopup] = useState(null);
     
@@ -32,17 +52,21 @@ const Reports = () => {
 
     const [showChart, setShowChart] = useState(null);
 
-       const DataFormater = (number) => {
+    const DataFormaterX = (date) => {
+        return date.split(",")[0]; 
+    }
+
+    const DataFormaterY = (number) => {
         if(number > 1000000000){
-          return (number/1000000000).toString() + 'B';
+            return (number/1000000000).toString() + 'B';
         }else if(number > 1000000){
-          return (number/1000000).toString() + 'M';
+            return (number/1000000).toString() + 'M';
         }else if(number > 1000){
-          return (number/1000).toString() + 'K';
+            return (number/1000).toString() + 'K';
         }else{
-          return number.toString();
+            return number.toString();
         }
-      }
+    }
 
       const [checked, setChecked] = useState(true); 
 
@@ -52,19 +76,24 @@ const Reports = () => {
             <p style={{padding: 0}}>Click a location on the map below to view its data report, or scroll down to see all the charts.</p>
             <div className="map-chart-container">
             <div>
-            <ReactMapGL
-            className="map-view-container"
-            {...viewport}
-            mapStyle = "mapbox://styles/noahb20/ckigtszgw173519qy1c0t05va"
-            mapboxApiAccessToken="pk.eyJ1Ijoibm9haGIyMCIsImEiOiJja2lkb2RlaGMwNGR4Mnhxd21sbWxyeWVnIn0.SLuqIEAYEE2gY0ZNw5ySHA"
-            onViewportChange={viewport => {
-                setViewport(viewport); 
-            }}
-            >
-                <div style={{position: 'absolute', right: 10, top: 10}}>
+                <MapGL
+                className="map-view-container"
+                    ref={mapRef}
+                    {...viewport}
+                    onViewportChange={handleViewportChange}
+                    mapStyle = "mapbox://styles/noahb20/ckigtszgw173519qy1c0t05va"
+                    mapboxApiAccessToken = "pk.eyJ1Ijoibm9haGIyMCIsImEiOiJja2lkb2RlaGMwNGR4Mnhxd21sbWxyeWVnIn0.SLuqIEAYEE2gY0ZNw5ySHA"
+                >
+                    <div style={{position: 'absolute', right: 10, top: 10}}>
                     <NavigationControl />
-                </div>
-                <Marker latitude={38.0293} longitude={-78.4767} offsetLeft={-20} offsetTop={-10}
+                    </div>
+                    <Geocoder
+                    mapRef={mapRef}
+                    onViewportChange={handleGeocoderViewportChange}
+                    mapboxApiAccessToken="pk.eyJ1Ijoibm9haGIyMCIsImEiOiJja2lkb2RlaGMwNGR4Mnhxd21sbWxyeWVnIn0.SLuqIEAYEE2gY0ZNw5ySHA"
+                    position="top-left"
+                    />
+                    <Marker latitude={38.0293} longitude={-78.4767} offsetLeft={-20} offsetTop={-10}
                 >
                     <div onClick={() => {
                         setShowPopup(0);
@@ -157,7 +186,6 @@ const Reports = () => {
                         />
                     </Source>
                     </div>  
-
                     {/* <div>
                     <Source id='polylineLayer2' type='geojson' data={Data2}>
                         <Layer
@@ -174,7 +202,6 @@ const Reports = () => {
                         }}
                         />
                     </Source>
-
                     <Source id='polygon2' type='geojson' data={Data2}>
                         <Layer
                         id= 'aoi-solid-fill2'
@@ -186,7 +213,7 @@ const Reports = () => {
                         />
                     </Source>
                     </div> */}
-            </ReactMapGL>
+                </MapGL>
             </div>
             <div>
                 {((showChart == null || showChart === 0) && checked) &&
@@ -196,8 +223,8 @@ const Reports = () => {
                     <p style={{color: 'gray'}}>Areas served: Test Location #1,...</p>  
                     <BarChart width={window.innerWidth*0.40} height={175} data={chartData1a} style={{marginBottom: 20}}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date"/>
-                        <YAxis tickFormatter={DataFormater}>
+                        <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                        <YAxis tickFormatter={DataFormaterY}>
                             <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
                         </YAxis>
                         <Tooltip />
@@ -206,8 +233,8 @@ const Reports = () => {
                     <div>
                     <BarChart width={window.innerWidth*0.40} height={175} data={chartData1b}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" />
-                        <YAxis tickFormatter={DataFormater}>
+                        <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                        <YAxis tickFormatter={DataFormaterY}>
                         <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
                         </YAxis>
                         <Tooltip />
@@ -231,8 +258,8 @@ const Reports = () => {
                     <p style={{color: 'gray'}}>Areas served: Test Location #1,...</p>  
                     <LineChart width={window.innerWidth*0.40} height={175} data={chartData1a} style={{marginBottom: 20}}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date"/>
-                        <YAxis tickFormatter={DataFormater}>
+                        <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                        <YAxis tickFormatter={DataFormaterY}>
                             <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
                         </YAxis>
                         <Tooltip />
@@ -241,8 +268,8 @@ const Reports = () => {
                     <div>
                     <LineChart width={window.innerWidth*0.40} height={175} data={chartData1b}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" />
-                        <YAxis tickFormatter={DataFormater}>
+                        <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                        <YAxis tickFormatter={DataFormaterY}>
                         <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
                         </YAxis>
                         <Tooltip />
@@ -266,8 +293,8 @@ const Reports = () => {
                     <p style={{color: 'gray'}}>Areas served: Test Location #2,...</p>  
                     <BarChart width={window.innerWidth*0.40} height={175} data={chartData2a} style={{marginBottom: 20}}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date"/>
-                        <YAxis tickFormatter={DataFormater}>
+                        <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                        <YAxis tickFormatter={DataFormaterY}>
                             <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
                         </YAxis>
                         <Tooltip />
@@ -276,8 +303,8 @@ const Reports = () => {
                     <div>
                     <BarChart width={window.innerWidth*0.40} height={175} data={chartData2b}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" />
-                        <YAxis tickFormatter={DataFormater}>
+                        <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                        <YAxis tickFormatter={DataFormaterY}>
                         <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
                         </YAxis>
                         <Tooltip />
@@ -301,8 +328,8 @@ const Reports = () => {
                     <p style={{color: 'gray'}}>Areas served: Test Location #2,...</p>  
                     <LineChart width={window.innerWidth*0.40} height={175} data={chartData2a} style={{marginBottom: 20}}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date"/>
-                        <YAxis tickFormatter={DataFormater}>
+                        <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                        <YAxis tickFormatter={DataFormaterY}>
                             <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
                         </YAxis>
                         <Tooltip />
@@ -311,8 +338,8 @@ const Reports = () => {
                     <div>
                     <LineChart width={window.innerWidth*0.40} height={175} data={chartData2b}>
                         <CartesianGrid strokeDasharray="3 3" />
-                        <XAxis dataKey="date" />
-                        <YAxis tickFormatter={DataFormater}>
+                        <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                        <YAxis tickFormatter={DataFormaterY}>
                         <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
                         </YAxis>
                         <Tooltip />
@@ -339,8 +366,8 @@ const Reports = () => {
                         <p>Test Location #1</p>
                         <BarChart width={window.innerWidth*0.20} height={175} data={chartData1a} style={{marginBottom: 20}}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date"/>
-                            <YAxis tickFormatter={DataFormater}>
+                            <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                            <YAxis tickFormatter={DataFormaterY}>
                                 <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
                             </YAxis>
                             <Tooltip />
@@ -351,8 +378,8 @@ const Reports = () => {
                         <p>Test Location #2</p>
                         <BarChart width={window.innerWidth*0.20} height={175} data={chartData2a} style={{marginBottom: 20}}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date"/>
-                            <YAxis tickFormatter={DataFormater}>
+                            <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                            <YAxis tickFormatter={DataFormaterY}>
                             </YAxis>
                             <Tooltip />
                             <Bar dataKey="copies/mL" fill="#4B93E2" />
@@ -366,8 +393,8 @@ const Reports = () => {
                         <p>Test Location #1</p>
                         <BarChart width={window.innerWidth*0.20} height={175} data={chartData1b}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date" />
-                            <YAxis tickFormatter={DataFormater}>
+                            <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                            <YAxis tickFormatter={DataFormaterY}>
                             <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
                             </YAxis>
                             <Tooltip />
@@ -379,8 +406,8 @@ const Reports = () => {
                         <p>Test Location #2</p>
                         <BarChart width={window.innerWidth*0.20} height={175} data={chartData2b}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date" />
-                            <YAxis tickFormatter={DataFormater}>
+                            <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                            <YAxis tickFormatter={DataFormaterY}>
                             {/* <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/> */}
                             </YAxis>
                             <Tooltip />
@@ -406,8 +433,8 @@ const Reports = () => {
                         <p>Test Location #1</p>
                         <LineChart width={window.innerWidth*0.20} height={175} data={chartData1a} style={{marginBottom: 20}}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date"/>
-                            <YAxis tickFormatter={DataFormater}>
+                            <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                            <YAxis tickFormatter={DataFormaterY}>
                                 <Label value="RNA (copies/mL)" position="insideBottomLeft" offset={10} angle={-90}/>
                             </YAxis>
                             <Tooltip />
@@ -418,8 +445,8 @@ const Reports = () => {
                         <p>Test Location #2</p>
                         <LineChart width={window.innerWidth*0.20} height={175} data={chartData2a} style={{marginBottom: 20}}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date"/>
-                            <YAxis tickFormatter={DataFormater}>
+                            <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                            <YAxis tickFormatter={DataFormaterY}>
                             </YAxis>
                             <Tooltip />
                             <Line dataKey="copies/mL" stroke="#4B93E2" dot={false}/>
@@ -433,8 +460,8 @@ const Reports = () => {
                         <p>Test Location #1</p>
                         <LineChart width={window.innerWidth*0.20} height={175} data={chartData1b}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date" />
-                            <YAxis tickFormatter={DataFormater}>
+                            <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                            <YAxis tickFormatter={DataFormaterY}>
                             <Label value="Daily cases/100K" position="insideBottomLeft" offset={10} angle={-90}/>
                             </YAxis>
                             <Tooltip />
@@ -446,8 +473,8 @@ const Reports = () => {
                         <p>Test Location #2</p>
                         <LineChart width={window.innerWidth*0.20} height={175} data={chartData2b}>
                             <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="date" />
-                            <YAxis tickFormatter={DataFormater}>
+                            <XAxis dataKey="date" tickFormatter={DataFormaterX}/>
+                            <YAxis tickFormatter={DataFormaterY}>
                             </YAxis>
                             <Tooltip />
                             <Line dataKey="cases" stroke="#000000" dot={false}/>
