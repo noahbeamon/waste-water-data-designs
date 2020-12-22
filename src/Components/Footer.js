@@ -24,18 +24,6 @@ const Footer = () => {
                                 <AiFillLinkedin size={20}/>
                                 <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://www.linkedin.com/in/heman-shakeri-61ba603a/"}>LinkedIn</a>
                             </li>
-                            <li>
-                                <AiFillGithub size={20}/>
-                                <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://github.com/hshakeri"}>Github</a>
-                            </li>
-                            <li>
-                                <SiGooglescholar size={20}/>
-                                <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://scholar.google.com/citations?user=zFIIhGMAAAAJ&hl=en"}>Google Scholar</a>
-                            </li>
-                            <li>
-                                <SiOrcid size={20}/>
-                                <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://orcid.org/0000-0002-9891-5748"}>ORCID</a>
-                            </li>
                             <li style={{marginTop: 30}}>Site built by Noah Beamon</li>
                         </ul>
                     </div>
