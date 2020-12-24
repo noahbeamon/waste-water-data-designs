@@ -31,7 +31,7 @@ const Moreprojects = () => {
                     setProjectButton1Color("rgba(46, 61, 130, 1)");
                 }}
                 onClick={() =>{
-                    window.location.href="Reports";
+                    window.location.href="/Moreprojects/Ldstructures";
                     setTimeout(() => {
                         setProjectButton1Color("rgba(46, 61, 130, 1)");
                     }, 20);
@@ -46,7 +46,7 @@ const Moreprojects = () => {
                     setProjectButton2Color("rgba(46, 61, 130, 1)");
                 }}
                 onClick={() =>{
-                    window.location.href="Reports";
+                    window.location.href="/Moreprojects/Complexsystems";
                     setTimeout(() => {
                         setProjectButton2Color("rgba(46, 61, 130, 1)");
                     }, 20);
@@ -61,7 +61,7 @@ const Moreprojects = () => {
                     setProjectButton3Color("rgba(46, 61, 130, 1)");
                 }}
                 onClick={() =>{
-                    window.location.href="Reports";
+                    window.location.href="/Moreprojects/Prescriptiveanalysis";
                     setTimeout(() => {
                         setProjectButton3Color("rgba(46, 61, 130, 1)");
                     }, 20);
@@ -76,7 +76,7 @@ const Moreprojects = () => {
                     setProjectButton4Color("rgba(46, 61, 130, 1)");
                 }}
                 onClick={() =>{
-                    window.location.href="Reports";
+                    window.location.href="/Moreprojects/Scalablemethods";
                     setTimeout(() => {
                         setProjectButton4Color("rgba(46, 61, 130, 1)");
                     }, 20);
@@ -91,7 +91,7 @@ const Moreprojects = () => {
                     setProjectButton5Color("rgba(46, 61, 130, 1)");
                 }}
                 onClick={() =>{
-                    window.location.href="Reports";
+                    window.location.href="/Moreprojects/Complexnetworks";
                     setTimeout(() => {
                         setProjectButton5Color("rgba(46, 61, 130, 1)");
                     }, 20);
@@ -106,7 +106,7 @@ const Moreprojects = () => {
                     setProjectButton6Color("rgba(46, 61, 130, 1)");
                 }}
                 onClick={() =>{
-                    window.location.href="Reports";
+                    window.location.href="/Moreprojects/Multiplexnetworks";
                     setTimeout(() => {
                         setProjectButton6Color("rgba(46, 61, 130, 1)");
                     }, 20);

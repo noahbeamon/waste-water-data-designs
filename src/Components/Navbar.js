@@ -6,7 +6,7 @@ import {
     Link,
 } from 'react-router-dom'; 
 
-function App() {
+function Navbar() {
   return (
     <div className="App">
           <ReactBootstrap.Navbar collapseOnSelect expand="lg" bg="light" variant="light">
@@ -38,4 +38,4 @@ function App() {
   );
 }
 
-export default App;
+export default Navbar;
