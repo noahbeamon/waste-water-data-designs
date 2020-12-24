@@ -10,7 +10,7 @@ function Navbar() {
   return (
     <div className="App">
           <ReactBootstrap.Navbar collapseOnSelect expand="lg" bg="light" variant="light">
-        <ReactBootstrap.Navbar.Brand href="#home"><strong style={{ color: '#2e3d82' }}>University of Virginia COVID-19 Wastewater Tracker</strong></ReactBootstrap.Navbar.Brand>
+        <ReactBootstrap.Navbar.Brand href="/"><strong style={{ color: '#2e3d82' }}>University of Virginia COVID-19 Wastewater Tracker</strong></ReactBootstrap.Navbar.Brand>
         <ReactBootstrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <ReactBootstrap.Navbar.Collapse id="responsive-navbar-nav">
           <ReactBootstrap.Nav className="mr-auto">
