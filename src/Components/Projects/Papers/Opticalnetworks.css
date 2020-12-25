@@ -1,0 +1,12 @@
+.content-container-optical {
+    display: flex;
+    flex-direction: column; 
+    margin: 2vw; 
+}
+
+.paper-image-container-optical {
+    margin: 2vw; 
+    width: 30vw;
+    height: 70vh; 
+    margin-left: 33vw; 
+}

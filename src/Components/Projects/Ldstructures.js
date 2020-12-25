@@ -1,10 +1,11 @@
 import React from 'react';
+import "./Ldstructures.css"; 
 
 const Ldstructures = () => {
     return(
         <div className="App">
-            <div className = "">
-                <strong>Inference of low-dimensional structures in data</strong>
+            <div className="content-container">
+                <strong style={{fontSize: 20}}>Inference of low-dimensional structures in data</strong>
                 <p>Finding associations between risk factors and morbidity patterns in biomedical data are of essential interest in healthcare analytics. The current state of the art methods using a descriptive analysis, are looking into the frequency of occurances and thus are prone to errors in detecting the patterns and can be blunt in separating different trends, such as temporal changes. We are considering these issues by first inferring the underlying patterns using powerful statistical methods that can be validated while having enough resolution to avoid errors.</p>
                 <strong>Comorbidity patterns in health data</strong>
                 <p>Chronic health conditions often arise from (or are followed by) multiple other complications. We study the associations among various health conditions by showing that the underlying network can be modeled using an Ising distribution. This is a concept borrowed from physics, known as binary Markov fields, that allowed us to reconstruct the network using multiple logistic regressions with penalties on the model complexity represented by the number of edges. Various benchmarks testify to the advantages of our proposed method compared to the state of the art methods in association analysis, such as frequency itemsets. Our method achieved higher accuracy in retrieving the underlying structures and enabling users to do statistical testing.</p>

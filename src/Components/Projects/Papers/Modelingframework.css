@@ -1,0 +1,19 @@
+.content-container {
+    display: flex;
+    flex-direction: column; 
+    margin: 2vw; 
+}
+
+.paper-image-container-modeling1 {
+    margin: 2vw; 
+    width: 20vw;
+    height: 80vh; 
+    margin-left: 35vw; 
+}
+
+.paper-image-container-modeling2 {
+    margin: 2vw; 
+    width: 30vw;
+    height: 45vh; 
+    margin-left: 30vw; 
+}

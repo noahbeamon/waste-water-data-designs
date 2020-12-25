@@ -1,0 +1,12 @@
+.content-container-optical {
+    display: flex;
+    flex-direction: column; 
+    margin: 2vw; 
+}
+
+.paper-image-container-makespan {
+    margin: 2vw; 
+    width: 70vw;
+    height: 30vh; 
+    margin-left: 15vw; 
+}

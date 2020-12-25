@@ -13,6 +13,11 @@ import Footer from "./Components/Footer";
 import Ldstructures from "./Components/Projects/Ldstructures"; 
 import Complexsystems from "./Components/Projects/Complexsystems"; 
 import Prescriptiveanalysis from "./Components/Projects/Prescriptiveanalysis";
+import Epidemicnetworks from "./Components/Projects/Papers/Epidemicnetworks";
+import Opticalnetworks from "./Components/Projects/Papers/Opticalnetworks";
+import Cyclicstructure from "./Components/Projects/Papers/Cyclicstructure"; 
+import Modelingframework from "./Components/Projects/Papers/Modelingframework"; 
+import Makespan from "./Components/Projects/Papers/Makespan";
 import Scalablemethods from "./Components/Projects/Scalablemethods";
 import Complexnetworks from "./Components/Projects/Complexnetworks"; 
 import Multiplexnetworks from "./Components/Projects/Multiplexnetworks"; 
@@ -39,6 +44,21 @@ function App() {
           </Route>
           <Route path="/Moreprojects/Prescriptiveanalysis" components={Prescriptiveanalysis}>
             <Prescriptiveanalysis />
+          </Route>
+          <Route path="/Moreprojects/Epidemicnetworks" components={Epidemicnetworks}>
+            <Epidemicnetworks />
+          </Route>
+          <Route path="/Moreprojects/Opticalnetworks" components={Opticalnetworks}>
+            <Opticalnetworks />
+          </Route>
+          <Route path="/Moreprojects/Makespan" components={Makespan}>
+            <Makespan />
+          </Route>
+          <Route path="/Moreprojects/Cyclicstructure" components={Cyclicstructure}>
+            <Makespan />
+          </Route>
+          <Route path="/Moreprojects/Modelingframework" components={Modelingframework }>
+            <Modelingframework />
           </Route>
           <Route path="/Moreprojects/Scalablemethods" components={Scalablemethods}>
             <Scalablemethods />
