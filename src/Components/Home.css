@@ -1,6 +1,11 @@
-.paragraphs {
-    margin-right: 100px; 
-    margin-left: 100px;
+.markdown-img-content {
+    display: flex;
+    flex-direction: row;
+}
+
+.paragraph-container {
+    display: flex;
+    flex-direction: column;
 }
 
 .button-container {
@@ -12,7 +17,7 @@
 .button {
     margin: 15px; 
     padding: 15px; 
-    border-radius: 10px; 
+    border-radius: 5px; 
 }
 
 .bottom-text-container {

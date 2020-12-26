@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactMd from 'react-md-file';
 import "./Home.css"; 
 
 const Home = () => {
@@ -9,82 +10,53 @@ const Home = () => {
 
     return(
         <div className="App">
-            <h1 style={{padding: 20}}><strong>University of Virginia COVID-19 Wastewater Tracker</strong></h1>
-            <div className="paragraphs">
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi imperdiet augue suscipit interdum aliquet. Sed ultricies bibendum mattis. Duis velit mauris, aliquam ac elementum sit amet, cursus nec tortor. Suspendisse in elementum est. In interdum ac dolor vel elementum. Mauris rutrum tortor quis bibendum finibus. Pellentesque laoreet erat vitae finibus commodo. Praesent eget cursus massa. Aliquam erat volutpat. Nulla facilisi. Donec porta leo nisi, eget porta nibh sodales id. Mauris id dolor nec purus interdum tempus. Proin lacinia semper elit, ac egestas turpis ultricies eget. Nam imperdiet tellus in velit ornare laoreet.</p>
-            </div>
-            <div className="button-container">
-                <div className="button" style={{backgroundColor: button1Color, cursor: "pointer"}}
-                onMouseOver={() =>{
-                    setButton1Color("rgba(46, 61, 130, 0.8)");
-                }}
-                onMouseLeave={() =>{
-                    setButton1Color("rgba(46, 61, 130, 1)");
-                }}
-                onClick={() =>{
-                    window.location.href="Reports";
-                    setTimeout(() => {
-                        setButton1Color("rgba(46, 61, 130, 1)");
-                    }, 20);
-                }}
-                >
-                    <strong style={{color: "white"}}>See Data Reports</strong>
+                <div className="markdown-img-content" style={{marginRight: 50, marginLeft: 50, marginTop: 90}}>
+                    <div style={{marginRight: 30}}>
+                        <div>
+                            <ReactMd fileName="./HomeParagraph1.md" />
+                        </div>
+                        <div className="button-container">
+                            <div className="button" style={{backgroundColor: button1Color, cursor: "pointer"}}
+                            onMouseOver={() =>{
+                                setButton1Color("rgba(46, 61, 130, 0.8)");
+                            }}
+                            onMouseLeave={() =>{
+                                setButton1Color("rgba(46, 61, 130, 1)");
+                            }}
+                            onClick={() =>{
+                                window.location.href="Reports";
+                                setTimeout(() => {
+                                    setButton1Color("rgba(46, 61, 130, 1)");
+                                }, 20);
+                            }}
+                            >
+                                <strong style={{color: "white"}}>See Data Reports</strong>
+                            </div>
+                            <div className="button" style={{backgroundColor: button2Color, cursor: "pointer"}}
+                            onMouseOver={() =>{
+                                setButton2Color("rgba(85, 85, 85, 0.8)");
+                            }}
+                            onMouseLeave={() =>{
+                                setButton2Color("rgba(85, 85, 85, 1)");
+                            }}
+                            onClick={() =>{
+                                window.location.href="Faq";
+                                setTimeout(() => {
+                                    setButton2Color("rgba(85, 85, 85, 1)");
+                                }, 20);
+                            }}
+                            >
+                                <strong style={{color: "white"}}>FAQs</strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div style={{marginLeft: 30}}>
+                            <img style={{borderRadius: 5, width: "40vw", height: "30vw"}} src="https://news.virginia.edu/sites/default/files/article_image/wastewater_analysis_ss_header_0.jpg" />
+                            <ReactMd markdown="UVA’s wastewaster testing program officially launched Sept. 8, as the undergraduate student population returned to UVA’s Grounds. (Photo by Sanjay Suchak, University Communications)" />
+                    </div>
                 </div>
-                <div className="button" style={{backgroundColor: button2Color, cursor: "pointer"}}
-                onMouseOver={() =>{
-                    setButton2Color("rgba(85, 85, 85, 0.8)");
-                }}
-                onMouseLeave={() =>{
-                    setButton2Color("rgba(85, 85, 85, 1)");
-                }}
-                onClick={() =>{
-                    window.location.href="Faqs";
-                    setTimeout(() => {
-                        setButton2Color("rgba(85, 85, 85, 1)");
-                    }, 20);
-                }}
-                >
-                    <strong style={{color: "white"}}>FAQs</strong>
-                </div>
-            </div>
-            <div className="paragraphs">
-                <strong style={{fontSize: 25}}>Why Wastewater?</strong>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi imperdiet augue suscipit interdum aliquet. Sed ultricies bibendum mattis. Duis velit mauris, aliquam ac elementum sit amet, cursus nec tortor. Suspendisse in elementum est. In interdum ac dolor vel elementum. Mauris rutrum tortor quis bibendum finibus. Pellentesque laoreet erat vitae finibus commodo. Praesent eget cursus massa. Aliquam erat volutpat. Nulla facilisi. Donec porta leo nisi, eget porta nibh sodales id. Mauris id dolor nec purus interdum tempus. Proin lacinia semper elit, ac egestas turpis ultricies eget. Nam imperdiet tellus in velit ornare laoreet.</p>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi imperdiet augue suscipit interdum aliquet. Sed ultricies bibendum mattis. Duis velit mauris, aliquam ac elementum sit amet, cursus nec tortor. Suspendisse in elementum est. In interdum ac dolor vel elementum. Mauris rutrum tortor quis bibendum finibus. Pellentesque laoreet erat vitae finibus commodo. Praesent eget cursus massa. Aliquam erat volutpat. Nulla facilisi. Donec porta leo nisi, eget porta nibh sodales id. Mauris id dolor nec purus interdum tempus. Proin lacinia semper elit, ac egestas turpis ultricies eget. Nam imperdiet tellus in velit ornare laoreet.</p>
-            </div>
-            <div className="button-container">
-                <div className="button" style={{backgroundColor: button3Color, cursor: "pointer"}}
-                onMouseOver={() =>{
-                    setButton3Color("rgba(85, 85, 85, 0.8)");
-                }}
-                onMouseLeave={() =>{
-                    setButton3Color("rgba(85, 85, 85, 1)");
-                }}
-                onClick={() =>{
-                    window.location.href="Studiesandprocedures";
-                    setTimeout(() => {
-                        setButton3Color("rgba(85, 85, 85, 1)");
-                    }, 20);
-                }}
-                >
-                    <strong style={{color: "white"}}>See Studies and Procedures</strong>
-                </div>
-                <div className="button" style={{backgroundColor: button4Color, cursor: "pointer"}}
-                onMouseOver={() =>{
-                    setButton4Color("rgba(85, 85, 85, 0.8)");
-                }}
-                onMouseLeave={() =>{
-                    setButton4Color("rgba(85, 85, 85, 1)");
-                }}
-                onClick={() =>{
-                    window.location.href="Moreprojects";
-                    setTimeout(() => {
-                        setButton4Color("rgba(85, 85, 85, 1)");
-                    }, 20);
-                }}
-                >
-                    <strong style={{color: "white"}}>Additional Projects and Publications</strong>
-                </div>
+            <div style={{marginLeft: 50, marginRight: 50}}>
+                <ReactMd fileName="./HomeParagraph2.md" />
             </div>
         </div>
     )

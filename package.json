@@ -13,6 +13,7 @@
     "react-icons": "^4.1.0",
     "react-map-gl": "^5.2.10",
     "react-map-gl-geocoder": "^2.1.6",
+    "react-md-file": "^2.0.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
     "react-switch": "^5.0.1",
