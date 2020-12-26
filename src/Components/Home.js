@@ -5,8 +5,6 @@ import "./Home.css";
 const Home = () => {
     const[button1Color, setButton1Color] = useState("rgba(46, 61, 130, 1)");
     const[button2Color, setButton2Color] = useState("rgba(85, 85, 85, 1)");
-    const[button3Color, setButton3Color] = useState("rgba(85, 85, 85, 1)");
-    const[button4Color, setButton4Color] = useState("rgba(85, 85, 85, 1)");
 
     return(
         <div className="App">
