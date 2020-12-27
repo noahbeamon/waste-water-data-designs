@@ -16,16 +16,16 @@ function Navbar() {
           <ReactBootstrap.Nav className="mr-auto">
           </ReactBootstrap.Nav>
           <ReactBootstrap.Nav>
-            <Link to="/">
+            <Link to="/" style={{textDecoration: "none"}}>
             <ReactBootstrap.Nav.Link href="#home">Home</ReactBootstrap.Nav.Link>
             </Link>
-            <Link to="/Reports">
+            <Link to="/Reports" style={{textDecoration: "none"}}>
             <ReactBootstrap.Nav.Link href="#reports">Reports</ReactBootstrap.Nav.Link>
             </Link>
-            <Link to="/Protocolsandstudies">
+            <Link to="/Protocolsandstudies" style={{textDecoration: "none"}}>
             <ReactBootstrap.Nav.Link eventKey={3} href="#protocolsandstudies">Protocols and Studies</ReactBootstrap.Nav.Link>
             </Link>
-            <Link to="/Faq">
+            <Link to="/Faq" style={{textDecoration: "none"}}>
             <ReactBootstrap.Nav.Link eventKey={4} href="#faq">FAQ</ReactBootstrap.Nav.Link>
             </Link>
           </ReactBootstrap.Nav>
