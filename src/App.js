@@ -4,6 +4,7 @@ import './App.css';
 import Home from "./Components/Home"
 import Reports from "./Components/Reports";
 import Protocolsandstudies from "./Components/Protocolsandstudies";
+import Team from "./Components/Team"; 
 import Faqs from "./Components/Faqs";
 import Navbar from "./Components/Navbar";
 import Footer from "./Components/Footer"; 
@@ -23,6 +24,9 @@ function App() {
         <Switch>
           <Route path="/Faq" component={Faqs}>
             <Faqs />
+          </Route>
+          <Route path="/Team" component={Team}>
+            <Team />
           </Route>
           <Route path="/Protocolsandstudies" component={Protocolsandstudies}>
             <Protocolsandstudies />

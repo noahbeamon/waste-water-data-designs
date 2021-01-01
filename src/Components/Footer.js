@@ -3,6 +3,7 @@ import "./Footer.css";
 import { MdEmail } from "react-icons/md";
 import { AiFillTwitterSquare, AiFillLinkedin, AiFillGithub, AiFillPhone } from "react-icons/ai";
 import { SiGooglescholar, SiOrcid } from "react-icons/si";
+import { CgWebsite } from "react-icons/cg";
 
 const Footer = () => {
     return(
@@ -23,6 +24,10 @@ const Footer = () => {
                             <li>
                                 <AiFillLinkedin size={20}/>
                                 <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://www.linkedin.com/in/heman-shakeri-61ba603a/"}>LinkedIn</a>
+                            </li>
+                            <li>
+                                <CgWebsite size={20}/>
+                                <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://hemanshakerilab.herokuapp.com/"}>Heman Shakeri Lab Website</a>
                             </li>
                             <li style={{marginTop: 30}}>Site built by Noah Beamon</li>
                         </ul>

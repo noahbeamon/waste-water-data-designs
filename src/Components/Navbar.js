@@ -17,16 +17,19 @@ function Navbar() {
           </ReactBootstrap.Nav>
           <ReactBootstrap.Nav>
             <Link to="/" style={{textDecoration: "none"}}>
-            <ReactBootstrap.Nav.Link href="#home">Home</ReactBootstrap.Nav.Link>
+            <ReactBootstrap.Nav.Link eventKey={1} href="#home">Home</ReactBootstrap.Nav.Link>
             </Link>
             <Link to="/Reports" style={{textDecoration: "none"}}>
-            <ReactBootstrap.Nav.Link href="#reports">Reports</ReactBootstrap.Nav.Link>
+            <ReactBootstrap.Nav.Link eventKey={2} href="#reports">Reports</ReactBootstrap.Nav.Link>
             </Link>
             <Link to="/Protocolsandstudies" style={{textDecoration: "none"}}>
             <ReactBootstrap.Nav.Link eventKey={3} href="#protocolsandstudies">Protocols and Studies</ReactBootstrap.Nav.Link>
             </Link>
+            <Link to="/Team" style={{textDecoration: "none"}}>
+            <ReactBootstrap.Nav.Link eventKey={4} href="#team">Team</ReactBootstrap.Nav.Link>
+            </Link>
             <Link to="/Faq" style={{textDecoration: "none"}}>
-            <ReactBootstrap.Nav.Link eventKey={4} href="#faq">FAQ</ReactBootstrap.Nav.Link>
+            <ReactBootstrap.Nav.Link eventKey={5} href="#faq">FAQ</ReactBootstrap.Nav.Link>
             </Link>
           </ReactBootstrap.Nav>
         </ReactBootstrap.Navbar.Collapse>
