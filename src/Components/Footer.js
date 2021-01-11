@@ -2,8 +2,9 @@ import React from 'react';
 import "./Footer.css"; 
 import { MdEmail } from "react-icons/md";
 import { AiFillTwitterSquare, AiFillLinkedin, AiFillGithub, AiFillPhone } from "react-icons/ai";
-import { SiGooglescholar, SiOrcid } from "react-icons/si";
+import { SiGooglescholar, SiOrcid, SiGithub } from "react-icons/si";
 import { CgWebsite } from "react-icons/cg";
+import dataScienceLogo from "./images/dataScienceLogo.jpg"; 
 
 const Footer = () => {
     return(
@@ -26,13 +27,29 @@ const Footer = () => {
                                 <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://www.linkedin.com/in/heman-shakeri-61ba603a/"}>LinkedIn</a>
                             </li>
                             <li>
+                                <SiGithub size={20}/>
+                                <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://github.com/hshakeri"}>Github</a>
+                            </li>
+                            <li>
+                                <SiGooglescholar size={20}/>
+                                <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://scholar.google.com/citations?user=zFIIhGMAAAAJ&hl=en"}>Google Scholar</a>
+                            </li>
+                            <li>
+                                <SiOrcid size={20}/>
+                                <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://orcid.org/0000-0002-9891-5748"}>ORCID</a>
+                            </li>
+                            <li>
                                 <CgWebsite size={20}/>
-                                <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://hemanshakerilab.herokuapp.com/"}>Heman Shakeri Lab Website</a>
+                                <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://hemanshakerilab.herokuapp.com/"}>Shakeri Lab Website</a>
                             </li>
                             <li style={{marginTop: 30}}>Site built by Noah Beamon</li>
                             <li>
                                 <AiFillLinkedin size={20}/>
+<<<<<<< HEAD
                                 <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://www.linkedin.com/in/noah-b-8a45711b5/"}>LinkedIn</a>
+=======
+                                <a target="_blank" style={{margin: 10, color: 'rgba(85, 85, 85, 1)'}} href={"https://www.linkedin.com/in/noah-b-8a45711b5/"}>Noah Beamon</a>
+>>>>>>> team
                             </li>
                         </ul>
                     </div>
@@ -56,14 +73,18 @@ const Footer = () => {
                     </div>
                     <div className="col">
                         <ul className="list-unstyled">
+<<<<<<< HEAD
                             <li><img style={{width: 375, height: 75}} src="https://mail.google.com/mail/u/1?ui=2&ik=f28063dc51&attid=0.1&permmsgid=msg-f:1688169185984724151&th=176d94ee2b613cb7&view=fimg&sz=s0-l75-ft&attbid=ANGjdJ_zYFwGQWo1CrnMAd8ETMWbgn0vemKPLH_reahHeYrm2i-Xc0d8RA1_NnpuHcR4AdgVinpU003Jhv_5WQ5zACA6C-swact_yS00jr3V2aY7XvBdX-XqTqRcYZk&disp=emb"/></li>
+=======
+                            <li><img style={{width: 375, height: 75}} src={dataScienceLogo}/></li>
+>>>>>>> team
                         </ul>
                     </div>
                 </div>
                 <hr />
                 <div className="row">
                     <p className="col-sm">
-                        &copy; {new Date().getFullYear()} University of Virginia Wastewater Tracker
+                        &copy; 2020-{new Date().getFullYear()} University of Virginia Wastewater Tracker
                     </p>
                 </div>
             </div>
